@@ -6,7 +6,7 @@ class Config{
     private static $database_host;
     private static $database_name;
 
-    private static $app_name = "TOBESET"; //To be set by the user.
+    private static $app_name; //To be set by the user.
 
     public static function onLoad(){
         if(getenv('lightna_database_user') === false){
@@ -40,6 +40,8 @@ class Config{
         if(!isset(self::$app_name)){
             echo "The app name is NOT set!\n";
         }
+        
+        
     }
 
     public static function getAppName(){
