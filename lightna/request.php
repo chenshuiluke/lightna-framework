@@ -10,7 +10,7 @@ class Request{
     //Code for getting the full URL was found here: http://stackoverflow.com/a/8891890
     private function parseURL(){
         $server = $_SERVER;
-        $this->method = $server['REQUEST_METHOD'];
+        $this->method = isset($server['REQUEST_METHOD']) ? $server['REQUEST_METHOD'] : "";
         $ssl = ( ! empty( $server['HTTPS'] ) && $server['HTTPS'] == 'on' );
         $sp = isset($server['SERVER_PROTOCOL']) ? strtolower($server['SERVER_PROTOCOL']) : "";
         $this->protocol = substr( $sp, 0, strpos( $sp, '/' ) ) . ( ( $ssl ) ? 's' : '' );
@@ -19,7 +19,7 @@ class Request{
         $host = isset($server['HTTP_HOST']) ? $server['HTTP_HOST'] : "";
         $this->host = isset( $host ) ? $host : isset($server['SERVER_NAME']) ? 
             $server['SERVER_NAME'] . ":".$this->port : "";
-        $this->uri = $server['REQUEST_URI'];
+        $this->uri = isset($server['REQUEST_URI']) ? $server['REQUEST_URI'] : "";
         $this->request_url = $this->protocol . '://' . $this->host . $this->uri;
     }
     function __construct(){
