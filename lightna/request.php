@@ -6,9 +6,11 @@ class Request{
     private $host;
     private $protocol;
     private $uri;
+    private $method;
     //Code for getting the full URL was found here: http://stackoverflow.com/a/8891890
     private function parseURL(){
         $server = $_SERVER;
+        $this->method = $server['REQUEST_METHOD'];
         $ssl = ( ! empty( $server['HTTPS'] ) && $server['HTTPS'] == 'on' );
         $sp = isset($server['SERVER_PROTOCOL']) ? strtolower($server['SERVER_PROTOCOL']) : "";
         $this->protocol = substr( $sp, 0, strpos( $sp, '/' ) ) . ( ( $ssl ) ? 's' : '' );
@@ -38,6 +40,10 @@ class Request{
 
     public function getUri(){
         return $this->uri;
+    }
+
+    public function getMethod(){
+        return $this->method;
     }
 }
 ?>
