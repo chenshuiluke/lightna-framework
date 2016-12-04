@@ -9,36 +9,36 @@ class Config{
     private static $app_name; //To be set by the user.
 
     public static function onLoad(){
-        if(getenv('lightna_database_user') === false){
-            echo "No environment variable was found for the Lightna database user.\n";
+        if(!isset(self::$database_user) && getenv('lightna_database_user') === false){
+            echo nl2br("No environment variable was found for the Lightna database user.\n");
         }
         else{
             $database_user = getenv('lightna_database_user');
         }
 
-        if(getenv('lightna_database_password') === false){
-            echo "No environment variable was found for the Lightna database password.\n";
+        if(!isset(self::$database_password) && getenv('lightna_database_password') === false){
+            echo nl2br("No environment variable was found for the Lightna database password.\n");
         }
         else{
-            self::$database_user = getenv('lightna_database_password');
+            self::$database_password = getenv('lightna_database_password');
         }
 
-        if(getenv('lightna_database_host') === false){
-            echo "No environment variable was found for the Lightna database host.\n";
+        if(!isset(self::$database_host) && getenv('lightna_database_host') === false){
+            echo nl2br("No environment variable was found for the Lightna database host.\n");
         }
         else{
-            self::$database_user = getenv('lightna_database_host');
+            self::$database_host = getenv('lightna_database_host');
         }
 
-        if(getenv('lightna_database_name') === false){
-            echo "No environment variable was found for the Lightna database name.\n";
+        if(!isset(self::$database_name) && getenv('lightna_database_name') === false){
+            echo nl2br("No environment variable was found for the Lightna database name.\n");
         }
         else{
-            self::$database_user = getenv('lightna_database_name');
+            self::$database_name = getenv('lightna_database_name');
         }
 
         if(!isset(self::$app_name)){
-            echo "The app name is NOT set!\n";
+            echo nl2br("The app name is NOT set!\n");
         }
         
         
