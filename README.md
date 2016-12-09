@@ -1,0 +1,7 @@
+#Installation
+
+1. Clone the repository and navigate into it.
+2. Install vagrant
+3. While in the repository, run `vagrant up` to download the prebuilt vagrant box
+4. When the vagrant box has been provisioned and is running, enter `localhost:8080` into your web browser.
+5. If there are any environment variables you need to set up, they will be shown on that page.
