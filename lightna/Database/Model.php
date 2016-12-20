@@ -73,7 +73,7 @@ class Model{
         $queryString .= ");";
         //var_dump($fields);
         //var_dump($values);
-        //echo $queryString;
+        echo $queryString;
         echo ORM::runQuery($queryString, $values);
     }
 
@@ -92,8 +92,29 @@ class Model{
             }
         }
         $queryString .= ");";
-        echo $queryString;
-        echo ORM::runQuery($queryString);
+        ORM::runQuery($queryString);
+    }
+
+    public function find($keyValArray = []){
+        $size = count($keyValArray);
+        $queryString = "SELECT * FROM $this->table ";
+        $keys = array_keys($keyValArray);
+        $values = [];
+        if($size > 0){
+            $queryString .= "WHERE";
+            for($counter = 0; $counter < $size; $counter++){
+                $queryString .= " $keys[$counter] = ?";
+                $value = $keyValArray[$keys[$counter]];
+                echo nl2br("$value\n");
+                array_push($values, $keyValArray[$keys[$counter]]);
+                if($counter < ($size - 1)){
+                    $queryString .= " AND";
+                }
+            }
+        }
+        $queryString .= ";";
+
+        return ORM::runQuery($queryString, $values);
     }
 }
 ?>

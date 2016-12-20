@@ -19,7 +19,7 @@ class Response{
     }
 
     public function convertContentToJson(){
-        $this->$content = json_encode($this->$content);
+        $this->content = json_encode($this->content);
     }
 
     public function respond(){

@@ -70,7 +70,7 @@ class Router{
                 $callback = $route->getCallback();
                 
                 $callback();
-                echo "MATCHED";
+                //echo "MATCHED";
                 return;
             }
         }

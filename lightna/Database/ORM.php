@@ -42,7 +42,11 @@ class ORM{
     public static function runQuery($queryString, $values = []){
         $runner = self::$pdo->prepare($queryString);
         $runner->execute($values);
-        return $runner->fetch();
+        $rows = [];
+        while($row = $runner->fetch(PDO::FETCH_ASSOC)){
+            array_push($rows, $row);
+        }
+        return $rows;
     }
 }
 ?>

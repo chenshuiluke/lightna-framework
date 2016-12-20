@@ -13,5 +13,16 @@ class UserController{
         $user->setFieldValue('age', $age);
         $user->saveNew();
     }
+
+    static function find(){
+        $name = Request::getQueryValue('name');
+        $age = Request::getQueryValue('age');
+        $user = new UserModel(); 
+        
+        $result = $user->find(['name' => $name, 'age' => $age]);
+        $response = new Response(200, $result);
+        $response->convertContentToJson();
+        return $response->respond();
+    }
 }
 ?>
