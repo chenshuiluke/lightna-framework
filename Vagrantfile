@@ -76,6 +76,6 @@ if [ -d "lightna-framework" ]; then
 fi
 SCRIPT
 
-  config.vm.provision "shell",
-    inline: $git_repo_update
+  #config.vm.provision "shell",
+  #  inline: $git_repo_update
 end

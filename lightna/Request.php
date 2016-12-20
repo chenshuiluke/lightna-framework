@@ -72,5 +72,9 @@ class Request{
         echo nl2br("\n");
         echo nl2br("Method: " . self::getMethod() . "\n");
     }
+
+    public static function getQueryValue($name){
+        return self::$queries[$name];
+    }
 }
 ?>

@@ -23,11 +23,11 @@ class Field{
     }
 
     function getValue(){
-        return $this->value;
+        return $this->fieldValue;
     }
 
     function setValue($value){
-        $this->value = $value;
+        $this->fieldValue = $value;
     }
 
     function sqlCreate(){

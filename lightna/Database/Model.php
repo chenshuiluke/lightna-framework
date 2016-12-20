@@ -42,10 +42,17 @@ class Model{
 
     }
 
+    public function setFieldValue($name, $value){
+        $this->setExistingFieldValue($name, $value);
+    }
+
     public function saveNew(){
         $queryString = "INSERT INTO $this->table (";
         $size = count($this->fields);
         $fields = array_values($this->fields);
+
+        $values = [];
+
         for($counter = 0; $counter < $size; $counter++){
             $field = $fields[$counter];
             $queryString .= $field->getName();
@@ -54,10 +61,24 @@ class Model{
             }
         }
         $queryString .= ") VALUES ( ";
-        echo $queryString;
+
+        for($counter = 0; $counter < $size; $counter++){
+            $field = $fields[$counter];
+            array_push($values, $field->getValue());
+            $queryString .= "?";
+            if($counter !== ($size - 1)){
+                $queryString .= ", ";
+            }
+        }
+        $queryString .= ");";
+        //var_dump($fields);
+        //var_dump($values);
+        //echo $queryString;
+        echo ORM::runQuery($queryString, $values);
     }
 
     protected function createTable(){
+        echo "HERE";
         $queryString = "CREATE TABLE IF NOT EXISTS $this->table (";
         $size = count($this->fields);
         $fields = array_values($this->fields);
@@ -72,6 +93,7 @@ class Model{
         }
         $queryString .= ");";
         echo $queryString;
+        echo ORM::runQuery($queryString);
     }
 }
 ?>

@@ -5,8 +5,9 @@ class Config{
     private static $database_password;
     private static $database_host;
     private static $database_name;
+    private static $database_type = "mysql"; //mysql or pgsql
     private static $isInDebugMode = true;
-
+    
     private static $app_name; //To be set by the user.
 
     public static function onLoad(){
@@ -16,7 +17,7 @@ class Config{
             }            
         }
         else{
-            $database_user = getenv('lightna_database_user');
+            self::$database_user = getenv('lightna_database_user');
         }
 
         if(!isset(self::$database_password) && getenv('lightna_database_password') === false){
@@ -77,6 +78,10 @@ class Config{
 
     public static function getIsInDebugMode(){
         return self::$isInDebugMode;
+    }
+
+    public static function getDatabaseType(){
+        return self::$database_type;
     }
 }
 ?>

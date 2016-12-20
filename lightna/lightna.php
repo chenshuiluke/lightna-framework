@@ -1,14 +1,27 @@
 <?php
 namespace Lightna;
-//phpinfo();
-require_once('load.php');
-//Due to the .htaccess file, all requests are rerouted to this file.
+try{
+    //phpinfo();
+    require_once('load.php');
+    //Due to the .htaccess file, all requests are rerouted to this file.
 
-Config::onLoad();
-Request::onLoad();
-if(Config::getIsInDebugMode()){
-    Request::printContents();
+    Config::onLoad();
+    Request::onLoad();
+    Database\ORM::onLoad();
+    if(Config::getIsInDebugMode()){
+        Request::printContents();
+    }
+
+
+    Router::match(Request::getMethod(), Request::getUri());
+}
+catch(\Exception $exc){
+    if(Config::getIsInDebugMode()){
+        return Response::respondQuick("An Exception has occurred. " . $exc, 500);
+    }
+    else{
+        return Response::respondQuick("An error has occurred.", 500);
+    }
 }
 
-Router::match(Request::getMethod(), Request::getUri());
 ?>

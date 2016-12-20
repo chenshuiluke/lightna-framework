@@ -68,7 +68,9 @@ class Router{
         foreach($routes as $route){
             if($route->getURI() === $uri){
                 $callback = $route->getCallback();
+                
                 $callback();
+                echo "MATCHED";
                 return;
             }
         }
