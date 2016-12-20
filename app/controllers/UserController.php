@@ -6,6 +6,7 @@ class UserController{
     }
     static function create(){
         $user = new UserModel();
+        $user->saveNew();
     }
 }
 ?>

@@ -39,13 +39,30 @@ class Model{
         foreach($keyValArray as $fieldName => $fieldValue){
             $this->setExistingFieldValue($fieldName, $fieldValue);
         }
+
+    }
+
+    public function saveNew(){
+        $queryString = "INSERT INTO $this->table (";
+        $size = count($this->fields);
+        $fields = array_values($this->fields);
+        for($counter = 0; $counter < $size; $counter++){
+            $field = $fields[$counter];
+            $queryString .= $field->getName();
+            if($counter !== ($size - 1)){
+                $queryString .= ", ";
+            }
+        }
+        $queryString .= ") VALUES ( ";
+        echo $queryString;
     }
 
     protected function createTable(){
         $queryString = "CREATE TABLE IF NOT EXISTS $this->table (";
         $size = count($this->fields);
+        $fields = array_values($this->fields);
         for($counter = 0; $counter < $size; $counter++){
-            $field = $this->fields[$counter];
+            $field = $fields[$counter];
             $queryString .= $field->sqlCreate();
 
             if($counter !== ($size-1)){
