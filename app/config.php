@@ -5,7 +5,7 @@ class Config{
     private static $database_password;
     private static $database_host;
     private static $database_name;
-    private static $isInDebugMode = false;
+    private static $isInDebugMode = true;
 
     private static $app_name; //To be set by the user.
 

@@ -10,6 +10,7 @@ spl_autoload_register(function($className){
     
     foreach($versionsToTry as $classNameVersion){
         @include_once($classNameVersion . '.php');
+        @include_once('Database/' . $classNameVersion . '.php');
         @include_once('../app/' . $classNameVersion . '.php');
         @include_once('../app/controllers/' . $classNameVersion . '.php');
         @include_once('../app/models/' . $classNameVersion . '.php');

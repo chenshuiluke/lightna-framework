@@ -6,5 +6,5 @@ Router::get('/', function(){
     return Response::respondQuick("Welcome to the Lightna framework!");
 });
 
-Router::get('/hello', 'ExampleController::index');
+Router::get('/hello', 'UserController::create');
 ?>
