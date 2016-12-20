@@ -5,40 +5,51 @@ class Config{
     private static $database_password;
     private static $database_host;
     private static $database_name;
+    private static $isInDebugMode = false;
 
     private static $app_name; //To be set by the user.
 
     public static function onLoad(){
         if(!isset(self::$database_user) && getenv('lightna_database_user') === false){
-            echo nl2br("No environment variable was found for the Lightna database user.\n");
+            if(Config::getIsInDebugMode()){
+                echo nl2br("No environment variable was found for the Lightna database user.\n");
+            }            
         }
         else{
             $database_user = getenv('lightna_database_user');
         }
 
         if(!isset(self::$database_password) && getenv('lightna_database_password') === false){
-            echo nl2br("No environment variable was found for the Lightna database password.\n");
+            if(Config::getIsInDebugMode()){
+                echo nl2br("No environment variable was found for the Lightna database password.\n");
+            }            
         }
         else{
             self::$database_password = getenv('lightna_database_password');
         }
 
         if(!isset(self::$database_host) && getenv('lightna_database_host') === false){
-            echo nl2br("No environment variable was found for the Lightna database host.\n");
+            if(Config::getIsInDebugMode()){
+                echo nl2br("No environment variable was found for the Lightna database host.\n");
+            }            
         }
         else{
             self::$database_host = getenv('lightna_database_host');
         }
 
         if(!isset(self::$database_name) && getenv('lightna_database_name') === false){
-            echo nl2br("No environment variable was found for the Lightna database name.\n");
+            if(Config::getIsInDebugMode()){
+                echo nl2br("No environment variable was found for the Lightna database name.\n");
+            }            
         }
         else{
             self::$database_name = getenv('lightna_database_name');
         }
 
         if(!isset(self::$app_name)){
-            echo nl2br("The app name is NOT set!\n");
+            if(Config::getIsInDebugMode()){
+                echo nl2br("The app name is NOT set!\n");
+            }            
         }
         
         
@@ -62,6 +73,10 @@ class Config{
 
     public static function getDatabaseName(){
         return self::$database_name;
+    }
+
+    public static function getIsInDebugMode(){
+        return self::$isInDebugMode;
     }
 }
 ?>

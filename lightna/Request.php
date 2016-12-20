@@ -7,6 +7,7 @@ class Request{
     private static $protocol;
     private static $uri;
     private static $method;
+    private static $queries;
     //Code for getting the full URL was found here: http://stackoverflow.com/a/8891890
     private static function parseURL(){
         //A bunch of issets in case the script is being run from the commandline via php -f
@@ -22,6 +23,11 @@ class Request{
             $server['SERVER_NAME'] . ":".self::$port : "";
         self::$uri = isset($server['REQUEST_URI']) ? $server['REQUEST_URI'] : "";
         self::$request_url = self::$protocol . '://' . self::$host . self::$uri;
+        self::$queries = parse_url(self::$request_url, PHP_URL_QUERY);
+
+        parse_str(self::$queries, self::$queries);
+
+        self::$uri = parse_url(self::$request_url, PHP_URL_PATH);
     }
 
     // function __construct(){
@@ -52,11 +58,18 @@ class Request{
         return self::$method;
     }
 
+    public static function getQueries(){
+        return self::$queries;
+    }
+
     public static function printContents(){
         echo nl2br("URL: " . self::getURL() . "\n");
         echo nl2br("Port: " . self::getPort() . "\n");
         echo nl2br("Host: " . self::getHost() . "\n");
         echo nl2br("Uri: " . self::getUri() . "\n");
+        echo "Queries ";
+        print_r(self::getQueries());
+        echo nl2br("\n");
         echo nl2br("Method: " . self::getMethod() . "\n");
     }
 }
