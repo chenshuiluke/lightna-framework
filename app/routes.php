@@ -1,6 +1,10 @@
 <?php
 use Lightna\Router;
+use Lightna\Response;
+
 Router::get('/', function(){
-    echo "Welcome to the lightna framework!";
+    return Response::respondQuick("Welcome to the Lightna framework!");
 });
+
+Router::get('/hello', 'ExampleController::index');
 ?>

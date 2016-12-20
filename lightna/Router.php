@@ -22,8 +22,8 @@ class Router{
             array_push(self::$getRoutes, $newRoute);
         }
         else if(Config::getIsInDebugMode()){
-            echo nl2br("Identical route was already registered for " . 
-            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n");
+            Response::respondQuick(nl2br("Identical route was already registered for " .
+            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
 
@@ -34,8 +34,8 @@ class Router{
             array_push(self::$postRoutes, $newRoute);
         }
         else if(Config::getIsInDebugMode()){
-            echo nl2br("Identical route was already registered for " .
-            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n");
+            Response::respondQuick(nl2br("Identical route was already registered for " .
+            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
 
@@ -46,8 +46,8 @@ class Router{
             array_push(self::$putRoutes, $newRoute);
         }
         else if(Config::getIsInDebugMode()){
-            echo nl2br("Identical route was already registered for " .
-            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n");
+            Response::respondQuick(nl2br("Identical route was already registered for " .
+            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
 
@@ -58,8 +58,8 @@ class Router{
             array_push(self::$deleteRoutes, $newRoute);
         }
         else if(Config::getIsInDebugMode()){
-            echo nl2br("Identical route was already registered for " .
-            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n");
+            Response::respondQuick(nl2br("Identical route was already registered for " .
+            $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }            
 
@@ -72,9 +72,8 @@ class Router{
                 return;
             }
         }
-        if(Config::getIsInDebugMode()){
-            echo "No route defined for " . Request::getMethod() .  " " .  Request::getURI();
-        }
+        Response::respondQuick(nl2br("No route defined for " . 
+                Request::getMethod() .  " " .  Request::getURI()));
         
     }
 
