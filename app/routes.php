@@ -2,9 +2,18 @@
 use Lightna\Router;
 use Lightna\Response;
 use Lightna\View;
+
 Router::get('/', function(){
+    return new View("index");
+});
+
+Router::get('/users', function(){
     return new View("users");
-    return Response::respondQuick("Welcome to the Lightna framework!");
+});
+
+
+Router::get('/privacy_policy.html', function(){
+    return new View("privacy_policy");
 });
 
 Router::get('/users/get', 'UserController::find');

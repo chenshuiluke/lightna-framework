@@ -14,6 +14,7 @@ spl_autoload_register(function($className){
         @include_once('../app/' . $classNameVersion . '.php');
         @include_once('../app/controllers/' . $classNameVersion . '.php');
         @include_once('../app/models/' . $classNameVersion . '.php');
+        @include_once('../app/views/' . $classNameVersion . '.php');
 
     }
 

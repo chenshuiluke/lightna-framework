@@ -43,8 +43,13 @@ class ORM{
         $runner = self::$pdo->prepare($queryString);
         $runner->execute($values);
         $rows = [];
-        while($row = $runner->fetch(PDO::FETCH_ASSOC)){
-            array_push($rows, $row);
+        try{
+            while($row = $runner->fetch(PDO::FETCH_ASSOC)){
+                array_push($rows, $row);
+            }
+        }
+        catch(\Exception $exc){
+            
         }
         return $rows;
     }

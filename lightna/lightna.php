@@ -1,15 +1,21 @@
 <?php
 namespace Lightna;
 session_start();
+//phpinfo();
+//echo "HI";
+
 try{
     require_once('load.php');
+    //phpinfo();
+
+    
     //Due to the .htaccess file, all requests are rerouted to this file.
     Utility::onLoad();
     Config::onLoad();
     Request::onLoad();
     Database\ORM::onLoad();
     if(Config::getIsInDebugMode()){
-        //Request::printContents();
+       // Request::printContents();
     }
 
 

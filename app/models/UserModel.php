@@ -6,6 +6,7 @@ class UserModel extends Model{
         $this->table = "users";
         $this->string("name")->notNull()->primary();
         $this->int("age");
+        $this->createTable();
         $this->create($keyValArray);
         //var_dump($keyValArray);
     }

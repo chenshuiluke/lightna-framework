@@ -92,6 +92,7 @@ class Model{
             }
         }
         $queryString .= ");";
+        //echo $queryString;
         ORM::runQuery($queryString);
     }
 
