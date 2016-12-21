@@ -1,5 +1,10 @@
 <?php
+/**
+ *  All requests are redirected by the .htaccess to this file.
+ */
 namespace Lightna;
+
+
 session_start();
 //phpinfo();
 //echo "HI";
@@ -8,7 +13,7 @@ try{
     require_once('load.php');
     //phpinfo();
 
-    
+
     //Due to the .htaccess file, all requests are rerouted to this file.
     Utility::onLoad();
     Config::onLoad();

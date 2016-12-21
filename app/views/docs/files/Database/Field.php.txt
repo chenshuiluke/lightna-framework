@@ -1,0 +1,76 @@
+<?php
+namespace Lightna\Database;
+class Field{
+    public $fieldName;
+    public $type;
+    public $fieldValue;
+    public $primary;
+    public $nullable;
+
+    function __construct($fieldName, $type, $primary = false, $nullable = true){
+        $this->fieldName = $fieldName;
+        $this->type = $type;
+        $this->primary = $primary;
+        $this->nullable = $nullable;
+    }
+
+    function getName(){
+        return $this->fieldName;
+    }
+
+    function getType(){
+        return $this->type;
+    }
+
+    function getValue(){
+        return $this->fieldValue;
+    }
+
+    function setValue($value){
+        $this->fieldValue = $value;
+    }
+
+    function &primary(){
+        $this->primary = true;
+        return $this;
+    }
+
+    function &nullable(){
+        $this->nullable = true;
+        return $this;
+    }
+
+    function &notNull(){
+        $this->nullable = false;
+        return $this;
+    }
+
+    function sqlCreate(){
+        $queryString = " ";
+        $queryString .= $this->fieldName;
+        //var_dump($this);
+        switch($this->type){
+            case "int":
+                $queryString .= " INTEGER";
+            break;
+            case "string":
+                $queryString .= " VARCHAR(255)";
+                
+            break;
+            case "boolean":
+                $queryString .= " BOOLEAN";
+            break;      
+            default:
+                echo "No type";
+            break;      
+        }
+        if($this->primary){
+            $queryString .= " PRIMARY KEY";
+        }
+        if(!$this->nullable){
+            $queryString .= " NOT NULL";
+        }
+        return $queryString;
+    }
+}
+?>

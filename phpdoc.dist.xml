@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <parser>
+    <target>app/views/docs</target>
+  </parser>
+  <transformer>
+    <target>app/views/docs</target>
+  </transformer>
+  <files>
+    <directory>lightna</directory>
+  </files>
+</phpdoc>
