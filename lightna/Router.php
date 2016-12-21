@@ -1,24 +1,46 @@
 <?php
+/**
+ * Stores all registered routes and handles route-to-request matching.
+ * Also handles serving of files in app/views/
+ */
 namespace Lightna;
-define('APACHE_MIME_TYPES_URL','http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
+/**
+ * Router stores all registered routes and handles route-to-request matching.
+ * Also handles serving of files in app/views/
+ */
 class Router{
+  /**
+   * Contains each and every route that has been registered, no matter its type.
+   * @var array $allRoutes
+   */
     private static $allRoutes = [];
+    /**
+     * Contains all GET routes.
+     * @var string $getRoutes
+     */
     private static $getRoutes = [];
+    /**
+     * Contains all POST routes.
+     * @var string $postRoutes
+     */
     private static $postRoutes = [];
+    /**
+     * Contains all PUT routes.
+     * @var string $putRoutes
+     */
     private static $putRoutes = [];
+    /**
+     * Contains all DELETE routes.
+     * @var string $deleteRoutes
+     */
     private static $deleteRoutes = [];
 
-    
 
-    static function generateUpToDateMimeArray($url){
-        $s=array();
-        foreach(@explode("\n",@file_get_contents($url))as $x)
-            if(isset($x[0])&&$x[0]!=='#'&&preg_match_all('#([^\s]+)#',$x,$out)&&isset($out[1])&&($c=count($out[1]))>1)
-                for($i=1;$i<$c;$i++)
-                    $s[]='&nbsp;&nbsp;&nbsp;\''.$out[1][$i].'\' => \''.$out[1][0].'\'';
-        return @sort($s)?'$mime_types = array(<br />'.implode($s,',<br />').'<br />);':false;
-    }
-
+    /**
+     * [checkIfRouteExists description]
+     * @param  Route $newRoute The route that will be checked to see if it already exists.
+     * @return boolean           true if the route exists; false otherwise.
+     */
     private static function checkIfRouteExists($newRoute){
         foreach(self::$allRoutes as $route){
             if($newRoute->getURI() === $route->getURI()){
@@ -27,6 +49,11 @@ class Router{
         }
         return false;
     }
+    /**
+     * Adds a new route to the list of all routes and the list of GET routes.
+     * @param  string $url      The URL that the route is registered for.
+     * @param  callable $callback The method that the route will call once it has been matched.
+     */
     public static function get($url, $callback){
         $newRoute = new Route('GET', $url, $callback);
         if(!self::checkIfRouteExists($newRoute)){
@@ -38,7 +65,11 @@ class Router{
             $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
-
+    /**
+     * Adds a new route to the list of all routes and the list of POST routes.
+     * @param  string $url      The URL that the route is registered for.
+     * @param  callable $callback The method that the route will call once it has been matched.
+     */
     public static function post($url, $callback){
         $newRoute = new Route('POST', $url, $callback);
         if(!self::checkIfRouteExists($newRoute)){
@@ -50,7 +81,11 @@ class Router{
             $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
-
+    /**
+     * Adds a new route to the list of all routes and the list of PUT routes.
+     * @param  string $url      The URL that the route is registered for.
+     * @param  callable $callback The method that the route will call once it has been matched.
+     */
     public static function put($url, $callback){
         $newRoute = new Route('PUT', $url, $callback);
         if(!self::checkIfRouteExists($newRoute)){
@@ -62,7 +97,11 @@ class Router{
             $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
     }
-
+    /**
+     * Adds a new route to the list of all routes and the list of DELETE routes.
+     * @param  string $url      The URL that the route is registered for.
+     * @param  callable $callback The method that the route will call once it has been matched.
+     */
     public static function delete($url, $callback){
         $newRoute = new Route('DELETE', $url, $callback);
         if(!self::checkIfRouteExists($newRoute)){
@@ -73,14 +112,18 @@ class Router{
             Response::respondQuick(nl2br("Identical route was already registered for " .
             $newRoute->getMethod() . " " . $newRoute->getURI() . " !\n"), 400);
         }
-    }            
-
+    }
+    /**
+     * Attempts to find the matching route for the request that was sent.
+     * @param  array $routes An array of GET/POST/PUT/DELETE routes (whichever type is applicable based on the request method).
+     * @param  string $uri    The URI to match.
+     */
     private static function matchURI($routes, $uri){
 
         foreach($routes as $route){
             if($route->getURI() === $uri){
                 $callback = $route->getCallback();
-                
+
                 $callback();
                 //echo "MATCHED";
                 return;
@@ -105,13 +148,18 @@ class Router{
             return $response->respond();
         }
         else{
-            return Response::respondQuick(nl2br("No route defined for " . 
-                    Request::getMethod() .  " " .  Request::getURI()));            
+            return Response::respondQuick(nl2br("No route defined for " .
+                    Request::getMethod() .  " " .  Request::getURI()));
         }
-        
-        
-    }
 
+
+    }
+    /**
+     * Starts the matching of the URI to a route by determining its type
+     * and passing the appropriate route list to matchURI()
+     * @param  string $method The method of the request (GET/POST/PUT/DELETE).
+     * @param  string $uri    The URI of the request
+     */
     public static function match($method, $uri){
         switch($method){
             case 'GET':

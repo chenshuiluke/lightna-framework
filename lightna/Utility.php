@@ -1,8 +1,23 @@
 <?php
+/**
+ * Contains general utility code.
+ */
 namespace Lightna;
-
+/**
+ * Utility contains general utility code for tasks such as generating the
+ * appropriate mime type for a file based on its extension.
+ */
 class Utility{
+    /**
+     * The array of extensions => mime types used by Router when serving files.
+     * @var array $mimeTypes
+     */
     public static $mimeTypes = [];
+
+    /**
+     * Populates the mime type array from the mime.types file.
+     */
+
     public static function onLoad(){
         if(!isset($_SESSION['mimeTypes'])){
             $handle = fopen("mime.types", "r");
@@ -20,9 +35,9 @@ class Utility{
                 $_SESSION['mimeTypes'] = self::$mimeTypes;
             } else {
                 // error opening the file.
-            }     
+            }
         }
-    
+
     }
 }
 ?>
