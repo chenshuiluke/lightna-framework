@@ -39,7 +39,7 @@ class Response{
             header($this->contentType);
         }
         if(isset($this->location)){
-            header('Location: ' . $this->location);
+            //header('Location: ' . $this->location);
             readfile($this->location);
         }
         http_response_code($this->statusCode);

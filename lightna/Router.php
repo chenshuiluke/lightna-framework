@@ -102,6 +102,7 @@ class Router{
                 echo "Unknown mimetype";
             }
             $response->setLocation($fileName);
+            echo $fileName;
             return $response->respond();
         }
         else{
