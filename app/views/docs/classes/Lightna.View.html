@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">81</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">74</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-644845394"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-213404455"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-644845394" class="accordion-body collapse in">
+            <div id="namespace-213404455" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1654641013"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-525808800"></a>
                                 <a href="../namespaces/Lightna.html" style="margin-left: 30px; padding-left: 0">Lightna</a>
             </div>
-            <div id="namespace-1654641013" class="accordion-body collapse ">
+            <div id="namespace-525808800" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-483320875"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-660786385"></a>
                                 <a href="../namespaces/Lightna.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
             </div>
-            <div id="namespace-483320875" class="accordion-body collapse ">
+            <div id="namespace-660786385" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -213,7 +213,8 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Lightna</small>View</h1>
-                    <p><em></em></p>
+                    <p><em>View class essentially encapsulates an html in app/views
+Returning a View will return the contents of the .html file it links to.</em></p>
                     
                     
                                         
@@ -306,12 +307,12 @@
             <a id="property_name" name="property_name" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$name</h3>
-                <pre class="signature">$name : </pre>
-                <p><em></em></p>
+                <pre class="signature">$name : string</pre>
+                <p><em>Name of the view.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -330,12 +331,12 @@
             <a id="property_baseDir" name="property_baseDir" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$baseDir</h3>
-                <pre class="signature">$baseDir : </pre>
-                <p><em></em></p>
+                <pre class="signature">$baseDir : string</pre>
+                <p><em>Directory where views are located.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -354,12 +355,12 @@
             <a id="property_content" name="property_content" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$content</h3>
-                <pre class="signature">$content : </pre>
-                <p><em></em></p>
+                <pre class="signature">$content : \Lightna\[type]</pre>
+                <p><em>The contents of the html file the View encapsulates.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                \Lightna\[type]
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -386,16 +387,16 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$name</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$name</span>) </pre>
+                <p><em>Returns the contents of the view&#039;s html file.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$name </td>
-                                <td></td>
+                                <td><p>Name of the View's html file, without the extension.</p></td>
                             </tr>
                                             </table>
                 
@@ -464,7 +465,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on December 21st, 2016 at 21:29.
+                    on December 21st, 2016 at 23:32.
                 </section>
             </section>
         </section>
