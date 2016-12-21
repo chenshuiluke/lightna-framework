@@ -17,7 +17,12 @@
                 },
                 success: function (data) {
                     console.log(data);
-
+                    for(var counter = 0; counter < data.length; counter++){
+                        var user = data[counter];
+                        console.log(user.name);
+                        console.log(user.age);
+                        $("tbody").append("<tr><td class='ui'>" + user.name + "</td><td class='ui'>" + user.age + "</td></tr>");
+                    }
                 },
                 error:function (data) {
                 
@@ -27,12 +32,56 @@
             });
         }
 
+        function addUser(){
+            $.ajax({
+                type: "POST",
+                url: "/users/add",
+                data: {
+                    'name' : $('#newUserNameBox').val(),
+                    'age' : $('#newUserAgeBox').val()
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('tbody').empty();
+                    $('#newUserNameBox').val("");
+                    $('#newUserAgeBox').val("");
+                    loadUsers();
+                },
+                error:function (data) {
+                    console.log(data);
+                    $('tbody').empty();
+                    $('#newUserNameBox').val("");
+                    $('#newUserAgeBox').val("");
+                    loadUsers();
+                }
+            });
+        }
+
         </script>
     </head>
-    <body onload="loadUsers();">
+    <body onload="loadUsers();" class="ui container">
         <h1 class="ui center aligned icon header">
             <i class="circular user icon"></i>Lightna Framework Users
         </h1>        
-        <h1>Hi!</h1>
+        <table class="ui table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="ui form">
+            <div class="field">
+                <input type='text' placeholder="name" name="name" id='newUserNameBox'/>
+            </div>
+            <div class="field">
+                <input type='text' placeholder="age" name="age" id='newUserAgeBox'/>
+            </div>
+            <button class="ui primary submit button" onclick="addUser()">Add</button>
+        </div>
     </body>
 </html>
