@@ -1,14 +1,27 @@
 <?php
+/**
+ * Deals with database connections and queries.
+ */
 namespace Lightna\Database;
 use Lightna\Config;
 use PDO;
 use Lightna\Response;
-
+/**
+ * ORM deals with connecting to the database on startup, and preparing and executing
+ * SQL queries that are sent by Model.php
+ */
 class ORM{
+    /**
+     * The PDO object for running database queries.
+     * @var PDO
+     */
     private static $pdo;
+    /**
+     * Connects to the database using the settings found in app/config.php
+     */
     public static function onLoad(){
         $dsnPrefix = Config::getDatabaseType();
-        
+
         if($dsnPrefix === "mysql" || $dsnPrefix === "pgsql"){
             $host = Config::getDatabaseHost();
             $user = Config::getDatabaseUser();
@@ -29,16 +42,23 @@ class ORM{
                     PDO::ATTR_EMULATE_PREPARES   => false,
                 ];
                 self::$pdo = new PDO($dsn, $user, $password, $opt);
-                
+
             }
             else if(Config::getIsInDebugMode()){
                 echo nl2br("Please ensure all the database configuration variables in config.php are set!\n");
             }
 
-            
+
         }
     }
-
+    /**
+     * Runs the query string and replaces the placeholder ?'s in it with their
+     * associated values.
+     * @param  string $queryString The query string to be executed.
+     * @param  array $values      An array of values associated with the placeholder
+     *  ?'s in the query string.
+     * @return array              Result of the query.
+     */
     public static function runQuery($queryString, $values = []){
         $runner = self::$pdo->prepare($queryString);
         $runner->execute($values);
@@ -49,7 +69,7 @@ class ORM{
             }
         }
         catch(\Exception $exc){
-            
+
         }
         return $rows;
     }
