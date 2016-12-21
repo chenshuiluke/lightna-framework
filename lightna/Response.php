@@ -19,6 +19,7 @@ class Response{
     }
 
     public function convertContentToJson(){
+        header('Content-Type: application/json');
         $this->content = json_encode($this->content);
     }
 

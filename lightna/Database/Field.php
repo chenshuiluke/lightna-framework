@@ -30,6 +30,21 @@ class Field{
         $this->fieldValue = $value;
     }
 
+    function &primary(){
+        $this->primary = true;
+        return $this;
+    }
+
+    function &nullable(){
+        $this->nullable = true;
+        return $this;
+    }
+
+    function &notNull(){
+        $this->nullable = false;
+        return $this;
+    }
+
     function sqlCreate(){
         $queryString = " ";
         $queryString .= $this->fieldName;
@@ -48,6 +63,12 @@ class Field{
             default:
                 echo "No type";
             break;      
+        }
+        if($this->primary){
+            $queryString .= " PRIMARY KEY";
+        }
+        if(!$this->nullable){
+            $queryString .= " NOT NULL";
         }
         return $queryString;
     }

@@ -90,8 +90,8 @@ class Router{
             case 'PUT':
                 self::matchURI(self::$putRoutes, $uri);
             break;
-            case 'POST':
-                self::matchURI(self::$postRoutes, $uri);
+            case 'DELETE':
+                self::matchURI(self::$deleteRoutes, $uri);
             break;
         }
     }

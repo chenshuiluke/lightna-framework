@@ -9,7 +9,7 @@ try{
     Request::onLoad();
     Database\ORM::onLoad();
     if(Config::getIsInDebugMode()){
-        Request::printContents();
+        //Request::printContents();
     }
 
 
@@ -17,7 +17,7 @@ try{
 }
 catch(\Exception $exc){
     if(Config::getIsInDebugMode()){
-        return Response::respondQuick("An Exception has occurred. " . $exc, 500);
+        return Response::respondQuick($exc, 500);
     }
     else{
         return Response::respondQuick("An error has occurred.", 500);

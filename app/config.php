@@ -8,7 +8,7 @@ class Config{
     private static $database_type = "mysql"; //mysql or pgsql
     private static $isInDebugMode = true;
     
-    private static $app_name; //To be set by the user.
+    private static $app_name = "Lightna framework"; //To be set by the user.
 
     public static function onLoad(){
         if(!isset(self::$database_user) && getenv('lightna_database_user') === false){

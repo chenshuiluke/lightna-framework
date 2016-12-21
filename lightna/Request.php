@@ -7,7 +7,10 @@ class Request{
     private static $protocol;
     private static $uri;
     private static $method;
-    private static $queries;
+    private static $queries = [];
+    private static $json = [];
+    private static $form_data = [];
+
     //Code for getting the full URL was found here: http://stackoverflow.com/a/8891890
     private static function parseURL(){
         //A bunch of issets in case the script is being run from the commandline via php -f
@@ -30,12 +33,38 @@ class Request{
         self::$uri = parse_url(self::$request_url, PHP_URL_PATH);
     }
 
+    private static function isValidJSON($str) {
+        json_decode($str);
+        return strlen($str) && json_last_error() == JSON_ERROR_NONE;
+    }
+
+    private static function getJson(){
+        $json = file_get_contents("php://input");
+        if(self::isValidJSON($json)){
+            self::$json = json_decode($json, true);
+        }
+    }
+
+    private static function getBodyData(){
+        self::getJson();
+        self::$form_data = $_POST;
+    }
+
+    public static function getJsonData(){
+        return self::$json;
+    }
+
+    public static function getFormData(){
+        return self::$form_data;
+    }
+
     // function __construct(){
     //     $this->parseURL();
     // }
 
     public static function onLoad(){
         self::parseURL();
+        self::getBodyData();
     }
 
     public static function getURL(){
@@ -75,6 +104,14 @@ class Request{
 
     public static function getQueryValue($name){
         return self::$queries[$name];
+    }
+
+    public static function getFormValue($name){
+        return self::$form_data[$name];
+    }
+
+    public static function getJsonValue($name){
+        return self::$json[$name];
     }
 }
 ?>
