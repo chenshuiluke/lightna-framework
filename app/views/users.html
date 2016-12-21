@@ -7,8 +7,29 @@
         <script src="semantic/semantic.min.js"></script>
         <title>Lightna Framework Users</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script>
+        function loadUsers(){
+            $.ajax({
+                type: "GET",
+                url: "/users/get/all",
+                data: {
+                },
+                success: function (data) {
+                    console.log(data);
+
+                },
+                error:function (data) {
+                
+                    console.log(data);
+
+                }
+            });
+        }
+
+        </script>
     </head>
-    <body>
+    <body onload="loadUsers();">
         <h1 class="ui center aligned icon header">
             <i class="circular user icon"></i>Lightna Framework Users
         </h1>        

@@ -122,6 +122,11 @@ class Model{
         return ORM::runQuery($queryString, $values);
     }
 
+    public function findAll(){
+        $queryString = "SELECT * FROM $this->table ;";
+        return ORM::runQuery($queryString);
+    }
+
     public function delete($keyValArray = []){
         $values = [];
         $size = count($keyValArray);

@@ -25,6 +25,15 @@ class UserController{
         return $response->respond();
     }
 
+    static function findAll(){
+        $user = new UserModel(); 
+        
+        $result = $user->findAll();
+        $response = new Response(200, $result);
+        $response->convertContentToJson();
+        return $response->respond();
+    }
+
     static function delete(){
         $name = Request::getQueryValue('name');
         $age = Request::getQueryValue('age');

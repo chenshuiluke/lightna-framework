@@ -87,13 +87,13 @@ class Router{
             }
         }
         $pathInfo = pathinfo($uri);
-        $extension = $pathInfo['extension'];
+        $extension = isset($pathInfo['extension']) ? $pathInfo['extension'] : null;
         if(isset($extension) && ($extension !== "html" && $extension !== "php")){
-            $mimeTypes = Utility::$mimeTypes;
+            $mimeTypes = $_SESSION['mimeTypes'];
             $fileName = '../app/views' . $uri;
             //var_dump($mimeTypes);
-            $contents = file_get_contents($fileName);
-            $response = new Response(200, $contents);
+            //$contents = file_get_contents($fileName);
+            $response = new Response(200);
             //echo $extension;
             if(isset($mimeTypes[$extension])){
                 $response->setContentType('Content-Type: ' . $mimeTypes[$extension]);
@@ -101,6 +101,7 @@ class Router{
             else{
                 echo "Unknown mimetype";
             }
+            $response->setLocation($fileName);
             return $response->respond();
         }
         else{
