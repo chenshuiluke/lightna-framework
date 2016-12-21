@@ -1,5 +1,5 @@
 #Installation
-
+*Requires PHP 7*
 1. Clone the repository and navigate into it.
 2. Install vagrant
 3. While in the repository, run `vagrant up` to download the prebuilt vagrant box
