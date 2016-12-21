@@ -16,12 +16,69 @@
                 data: {
                 },
                 success: function (data) {
+                    $('tbody').empty();
+                    $('#newUserNameBox').val("");
+                    $('#newUserAgeBox').val("");
                     console.log(data);
                     for(var counter = 0; counter < data.length; counter++){
                         var user = data[counter];
                         console.log(user.name);
                         console.log(user.age);
-                        $("tbody").append("<tr><td class='ui'>" + user.name + "</td><td class='ui'>" + user.age + "</td></tr>");
+
+                        var tableRow = $("<tr>",{
+                            class: 'ui form'
+                        });
+
+                        var tableData1 = $("<td>",{
+                            class: 'ui field'
+                        });
+                        var tableData2 = $("<td>",{
+                            class: 'ui field'
+                        });
+
+                        var tableData3 = $("<td>",{
+                            class: 'ui field'
+                        });
+
+                        var editBox1 = $("<input>", {
+                            val: user.name,
+                            id: user.name + 'editBox',
+                            type: 'text'
+                        }); 
+
+                        var editBox2 = $("<input>", {
+                            val: user.age,
+                            id: user.age + 'editBox',
+                            type: 'text'
+                        });
+
+                        var updateButton = $("<button>",{
+                            class: 'ui green button',
+                            html: 'Update'
+                        }).click({'name' : user.name, 'age' : user.age},function(event){
+                            console.log("Sending old values " + event.data.name + event.data.age);
+                            var newName = $('#' + event.data.name + 'editBox').val();
+                            var newAge = $('#' + event.data.age + 'editBox').val();
+                            console.log("Sending new values " + newName, newAge);
+                            updateUser(event.data.name, event.data.age, newName, newAge);
+                        });
+
+                        var deleteButton = $("<button>",{
+                            class: 'ui red button',
+                            html: 'Delete'
+                        }).click({'name' : user.name, 'age' : user.age}, function(event){
+                            deleteUser(event.data.name, event.data.age)
+                        });
+
+                        tableData1.append(editBox1);
+                        tableData2.append(editBox2);
+                        tableData3.append(updateButton);
+                        tableData3.append(deleteButton);
+
+                        tableRow.append(tableData1);
+                        tableRow.append(tableData2);
+                        tableRow.append(tableData3);
+                        $("tbody").append(tableRow);
                     }
                 },
                 error:function (data) {
@@ -29,6 +86,38 @@
                     console.log(data);
 
                 }
+            });
+        }
+
+        function deleteUser(name, age){
+             $.ajax({
+                type: "DELETE",
+                url: "/users/delete?" + $.param({
+                    'name' : name,
+                    'age' : age,
+                }),
+                success: function (data) {
+                    console.log(data);
+                    loadUsers();
+                }
+
+            });           
+        }
+
+        function updateUser(oldName, oldAge, newName, newAge){
+            $.ajax({
+                type: "PUT",
+                url: "/users/update?" + $.param({
+                    'name' : oldName,
+                    'age' : oldAge,
+                    'newName' : newName,
+                    'newAge' : newAge
+                }),
+                success: function (data) {
+                    console.log(data);
+                    loadUsers();
+                }
+
             });
         }
 
@@ -42,9 +131,6 @@
                 },
                 success: function (data) {
                     console.log(data);
-                    $('tbody').empty();
-                    $('#newUserNameBox').val("");
-                    $('#newUserAgeBox').val("");
                     loadUsers();
                 },
                 error:function (data) {
@@ -68,6 +154,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Age</th>
+                    <th>Modify</th>
                 </tr>
             </thead>
             <tbody>

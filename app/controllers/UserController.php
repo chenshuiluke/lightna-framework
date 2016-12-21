@@ -8,6 +8,9 @@ class UserController{
     static function create(){
         $name = Request::getFormValue('name');
         $age = Request::getFormValue('age');
+        if(!isset($name) || !isset($age)){
+            return Response::respondQuick("You forgot to enter the person's details", 400);
+        }
         $user = new UserModel();
         $user->setFieldValue('name', $name);
         $user->setFieldValue('age', $age);
@@ -17,6 +20,11 @@ class UserController{
     static function find(){
         $name = Request::getQueryValue('name');
         $age = Request::getQueryValue('age');
+
+        if(!isset($name) || !isset($age)){
+            return Response::respondQuick("You forgot to enter the person's details", 400);
+        }
+
         $user = new UserModel(); 
         
         $result = $user->find(['name' => $name, 'age' => $age]);
@@ -47,6 +55,10 @@ class UserController{
         $age = Request::getQueryValue('age');
         $newName = Request::getQueryValue('newName');
         $newAge = Request::getQueryValue('newAge');
+
+        if(!isset($name) || !isset($age) || !isset($newName) || !isset($newAge)){
+            return Response::respondQuick("You forgot to enter the person's details", 400);
+        }
         $user = new UserModel(); 
         
         $user->update(['name' => $name, 'age' => $age],
