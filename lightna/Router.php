@@ -88,7 +88,7 @@ class Router{
         }
         $pathInfo = pathinfo($uri);
         $extension = isset($pathInfo['extension']) ? $pathInfo['extension'] : null;
-        if(isset($extension) && ($extension !== "html" && $extension !== "php")){
+        if(isset($extension)){
             $mimeTypes = $_SESSION['mimeTypes'];
             $fileName = '../app/views' . $uri;
             //var_dump($mimeTypes);
