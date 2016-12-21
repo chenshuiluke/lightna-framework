@@ -1,8 +1,9 @@
 <?php
 use Lightna\Router;
 use Lightna\Response;
-
+use Lightna\View;
 Router::get('/', function(){
+    return new View("users");
     return Response::respondQuick("Welcome to the Lightna framework!");
 });
 
