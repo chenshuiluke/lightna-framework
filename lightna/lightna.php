@@ -1,10 +1,9 @@
 <?php
 namespace Lightna;
 try{
-    //phpinfo();
     require_once('load.php');
     //Due to the .htaccess file, all requests are rerouted to this file.
-
+    Utility::onLoad();
     Config::onLoad();
     Request::onLoad();
     Database\ORM::onLoad();

@@ -1,11 +1,23 @@
 <?php
 namespace Lightna;
+define('APACHE_MIME_TYPES_URL','http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
 class Router{
     private static $allRoutes = [];
     private static $getRoutes = [];
     private static $postRoutes = [];
     private static $putRoutes = [];
     private static $deleteRoutes = [];
+
+    
+
+    static function generateUpToDateMimeArray($url){
+        $s=array();
+        foreach(@explode("\n",@file_get_contents($url))as $x)
+            if(isset($x[0])&&$x[0]!=='#'&&preg_match_all('#([^\s]+)#',$x,$out)&&isset($out[1])&&($c=count($out[1]))>1)
+                for($i=1;$i<$c;$i++)
+                    $s[]='&nbsp;&nbsp;&nbsp;\''.$out[1][$i].'\' => \''.$out[1][0].'\'';
+        return @sort($s)?'$mime_types = array(<br />'.implode($s,',<br />').'<br />);':false;
+    }
 
     private static function checkIfRouteExists($newRoute){
         foreach(self::$allRoutes as $route){
@@ -74,8 +86,28 @@ class Router{
                 return;
             }
         }
-        Response::respondQuick(nl2br("No route defined for " . 
-                Request::getMethod() .  " " .  Request::getURI()));
+        $pathInfo = pathinfo($uri);
+        $extension = $pathInfo['extension'];
+        if(isset($extension) && ($extension !== "html" && $extension !== "php")){
+            $mimeTypes = Utility::$mimeTypes;
+            $fileName = '../app/views' . $uri;
+            //var_dump($mimeTypes);
+            $contents = file_get_contents($fileName);
+            $response = new Response(200, $contents);
+            //echo $extension;
+            if(isset($mimeTypes[$extension])){
+                $response->setContentType('Content-Type: ' . $mimeTypes[$extension]);
+            }
+            else{
+                echo "Unknown mimetype";
+            }
+            return $response->respond();
+        }
+        else{
+            return Response::respondQuick(nl2br("No route defined for " . 
+                    Request::getMethod() .  " " .  Request::getURI()));            
+        }
+        
         
     }
 
