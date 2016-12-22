@@ -144,7 +144,7 @@ class Router{
             else{
                 echo "Unknown mimetype";
             }
-            $response->setLocation($fileName);
+            $response->setLocation($uri);
             return $response->respond();
         }
         else{

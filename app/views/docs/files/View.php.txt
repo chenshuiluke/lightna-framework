@@ -29,6 +29,16 @@ class View{
      * @param string $name Name of the View's html file, without the extension.
      */
     function __construct($name){
+        $pathInfo = pathinfo($name);
+        if(isset($pathInfo['dirname']) && isset($pathInfo['basename'])){
+            $this->baseDir .= $pathInfo['dirname'];
+            $lastCharacter = substr($this->baseDir, -1);
+            if($lastCharacter !== "/"){
+                $this->baseDir .= "/";
+            }
+            $name = $pathInfo['basename'];
+        }
+
         $this->name = $name . ".html";
         $directoryContents = scandir($this->baseDir);
 
@@ -39,7 +49,8 @@ class View{
                 return $response->respond();
             }
         }
-        throw new \Exception("$this->name not found in app/views!");
+        var_dump($directoryContents);
+        throw new \Exception("$this->name not found in $this->baseDir!");
     }
 }
 ?>
