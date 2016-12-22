@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">66</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">12</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1473784450"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1882018086"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1473784450" class="accordion-body collapse in">
+            <div id="namespace-1882018086" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1218726535"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1655961040"></a>
                                 <a href="../namespaces/Lightna.html" style="margin-left: 30px; padding-left: 0">Lightna</a>
             </div>
-            <div id="namespace-1218726535" class="accordion-body collapse ">
+            <div id="namespace-1655961040" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-532412280"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1654406301"></a>
                                 <a href="../namespaces/Lightna.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
             </div>
-            <div id="namespace-532412280" class="accordion-body collapse ">
+            <div id="namespace-1654406301" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -213,7 +213,8 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Lightna\Database</small>Field</h1>
-                    <p><em></em></p>
+                    <p><em>Fields replace database columns. Their name, value and type are used to generate
+the SQL needed to created and manipulate them.</em></p>
                     
                     
                                         
@@ -316,12 +317,12 @@
             <a id="property_fieldName" name="property_fieldName" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$fieldName</h3>
-                <pre class="signature">$fieldName : </pre>
-                <p><em></em></p>
+                <pre class="signature">$fieldName : string</pre>
+                <p><em>The name of the field</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -340,12 +341,12 @@
             <a id="property_type" name="property_type" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$type</h3>
-                <pre class="signature">$type : </pre>
-                <p><em></em></p>
+                <pre class="signature">$type : string</pre>
+                <p><em>The type of the field. Should be equal to either &quot;string&quot;, &quot;int&quot; or &quot;boolean&quot;</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -364,12 +365,12 @@
             <a id="property_fieldValue" name="property_fieldValue" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$fieldValue</h3>
-                <pre class="signature">$fieldValue : </pre>
-                <p><em></em></p>
+                <pre class="signature">$fieldValue : mixed</pre>
+                <p><em>The value of the field</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                mixed
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -388,12 +389,12 @@
             <a id="property_primary" name="property_primary" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$primary</h3>
-                <pre class="signature">$primary : </pre>
-                <p><em></em></p>
+                <pre class="signature">$primary : boolean</pre>
+                <p><em>Determines if the field will have a PRIMARY KEY constraint when creating the table.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                boolean
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -412,12 +413,12 @@
             <a id="property_nullable" name="property_nullable" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$nullable</h3>
-                <pre class="signature">$nullable : </pre>
-                <p><em></em></p>
+                <pre class="signature">$nullable : boolean</pre>
+                <p><em>Determines if the field will have a NOT NULL constraint when creating the table.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                boolean
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -444,31 +445,31 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$fieldName</span>,   <span class="argument">$type</span>,   <span class="argument">$primary = false</span>,   <span class="argument">$nullable = true</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$fieldName</span>, string  <span class="argument">$type</span>, boolean  <span class="argument">$primary = false</span>, boolean  <span class="argument">$nullable = true</span>) </pre>
+                <p><em>Creates a new field</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$fieldName </td>
-                                <td></td>
+                                <td><p>The name of the new field.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$type </td>
-                                <td></td>
+                                <td><p>The type of the new field.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>boolean</td>
                                 <td>$primary </td>
-                                <td></td>
+                                <td><p>Determines the PRIMARY KEY constraint.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>boolean</td>
                                 <td>$nullable </td>
-                                <td></td>
+                                <td><p>Determines the NOT NULL constraint.</p></td>
                             </tr>
                                             </table>
                 
@@ -493,13 +494,16 @@
             <article class="method">
                 <h3 class="public ">getName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getName() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">getName() : string</pre>
+                <p><em>Gets the field&#039;s name.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The name of the field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -519,13 +523,16 @@
             <article class="method">
                 <h3 class="public ">getType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getType() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">getType() : string</pre>
+                <p><em>Gets the field&#039;s type.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The type of the field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -545,13 +552,16 @@
             <article class="method">
                 <h3 class="public ">getValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getValue() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">getValue() : mixed</pre>
+                <p><em>Gets the field&#039;s value.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The value of the field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -571,16 +581,16 @@
             <article class="method">
                 <h3 class="public ">setValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setValue(  <span class="argument">$value</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setValue(mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Sets the field&#039;s value.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>mixed</td>
                                 <td>$value </td>
-                                <td></td>
+                                <td><p>The new value of the field.</p></td>
                             </tr>
                                             </table>
                 
@@ -605,13 +615,16 @@
             <article class="method">
                 <h3 class="public ">primary()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">primary() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">primary() : \Lightna\Database\Field</pre>
+                <p><em>States that the field will have a PRIMARY KEY constraint.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    <a href="../classes/Lightna.Database.Field.html">\Lightna\Database\Field</a>
+                                            &mdash; <p>The updated instance of the Field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -631,13 +644,16 @@
             <article class="method">
                 <h3 class="public ">nullable()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">nullable() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">nullable() : \Lightna\Database\Field</pre>
+                <p><em>States that the field will have a NOT NULL constraint.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    <a href="../classes/Lightna.Database.Field.html">\Lightna\Database\Field</a>
+                                            &mdash; <p>The updated instance of the Field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -657,13 +673,16 @@
             <article class="method">
                 <h3 class="public ">notNull()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">notNull() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">notNull() : \Lightna\Database\Field</pre>
+                <p><em>States that the field will NOT have a NOT NULL constraint.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    <a href="../classes/Lightna.Database.Field.html">\Lightna\Database\Field</a>
+                                            &mdash; <p>The updated instance of the Field.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -683,13 +702,17 @@
             <article class="method">
                 <h3 class="public ">sqlCreate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sqlCreate() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">sqlCreate() : string</pre>
+                <p><em>Generates the SQL required to create this column in the database.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The SQL required to create the column in the database.
+E.g. &quot;name VARCHAR(255) PRIMARY KEY NOT NULL&quot;</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -753,7 +776,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on December 21st, 2016 at 23:40.
+                    on December 22nd, 2016 at 00:19.
                 </section>
             </section>
         </section>
