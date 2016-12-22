@@ -60,6 +60,7 @@ class Request{
     private static function parseURL(){
         //A bunch of issets in case the script is being run from the commandline via php -f
         $server = $_SERVER;
+        //echo $server['REQUEST_URI'];
         self::$method = isset($server['REQUEST_METHOD']) ? $server['REQUEST_METHOD'] : "";
         $ssl = ( ! empty( $server['HTTPS'] ) && $server['HTTPS'] == 'on' );
         $sp = isset($server['SERVER_PROTOCOL']) ? strtolower($server['SERVER_PROTOCOL']) : "";
@@ -73,9 +74,16 @@ class Request{
         self::$request_url = self::$protocol . '://' . self::$host . self::$uri;
         self::$queries = parse_url(self::$request_url, PHP_URL_QUERY);
 
-        parse_str(self::$queries, self::$queries);
 
+
+        parse_str(self::$queries, self::$queries);
         self::$uri = parse_url(self::$request_url, PHP_URL_PATH);
+
+        $lastCharacter = substr(self::$uri, -1);
+        if($lastCharacter === "/" && strlen(self::$uri) > 1){
+          self::$uri = substr(self::$uri, 0, -1);
+          //echo self::$uri;
+        }
     }
     /**
      * Checks to see if $str is a valid JSON string.

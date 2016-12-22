@@ -127,7 +127,6 @@ class Response{
     private function loopReadfileUntilFound($subDirectory = ""){
         try{
             $baseDir = "../app/views";
-
             $lastCharacter = substr($baseDir, -1);
             if($lastCharacter !== "/"){
                 $baseDir .= "/";

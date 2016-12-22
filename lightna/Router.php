@@ -130,6 +130,7 @@ class Router{
             }
         }
         $pathInfo = pathinfo($uri);
+        //echo nl2br($uri."\n");
         $extension = isset($pathInfo['extension']) ? $pathInfo['extension'] : null;
         if(isset($extension)){
             $mimeTypes = $_SESSION['mimeTypes'];
