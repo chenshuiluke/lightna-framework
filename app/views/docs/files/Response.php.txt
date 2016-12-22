@@ -118,11 +118,11 @@ class Response{
         echo $content;
     }
   /**
-   * [Allows for retrieval of Views that aren't immediately under app/views.
+   * Allows for retrieval of Views that aren't immediately under app/views.
    * It will basically recurse into each subdirectory of app/views until
    * the desired file is found.
    * @param  string $subDirectory The current subdirectory to scan for the resource.
-   * 
+   *
    */
     private function loopReadfileUntilFound($subDirectory = ""){
         try{
