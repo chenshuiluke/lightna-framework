@@ -73,6 +73,7 @@ fi
 if [ -d "lightna-framework" ]; then
   cd lightna-framework
   git pull origin master
+  cd ..
   chmod -R a+rwx lightna-framework
 fi
 SCRIPT
