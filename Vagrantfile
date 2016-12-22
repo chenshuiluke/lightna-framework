@@ -76,6 +76,7 @@ if [ -d "lightna-framework" ]; then
   cd ..
   chmod -R a+rwx lightna-framework
 fi
+systemctl restart httpd.service
 SCRIPT
 
 config.vm.provision "shell",
