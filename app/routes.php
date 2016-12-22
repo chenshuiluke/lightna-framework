@@ -4,13 +4,8 @@ use Lightna\Response;
 use Lightna\View;
 
 Router::get('/', function(){
-    return new View("index");
-});
-
-Router::get('/users', function(){
     return new View("users");
 });
-
 
 Router::get('/privacy_policy.html', function(){
     return new View("privacy_policy");
