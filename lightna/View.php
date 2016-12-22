@@ -39,7 +39,7 @@ class View{
                 return $response->respond();
             }
         }
-        throw new \Exception("$this->name not found in app/views!");
+        throw new \Exception("$this->name not found in $this->baseDir!");
     }
 }
 ?>
