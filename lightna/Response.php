@@ -97,7 +97,7 @@ class Response{
         }
         if(isset($this->location)){
             //header('Location: ' . $this->location);
-            readfile($this->location);
+            @$this->loopReadfileUntilFound();
         }
         http_response_code($this->statusCode);
         if(isset($this->content)){
@@ -116,6 +116,32 @@ class Response{
 
         http_response_code($statusCode);
         echo $content;
+    }
+
+    private function loopReadfileUntilFound($subDirectory = ""){
+        try{
+            $baseDir = "../app/views";
+
+            $lastCharacter = substr($baseDir, -1);
+            if($lastCharacter !== "/"){
+                $baseDir .= "/";
+            }
+
+            $possibleFileLocation = $baseDir . $subDirectory . "/$this->location";
+            $value = readfile($possibleFileLocation);
+            if($value){
+                return true;
+            }
+            else{
+                $directoryContents = scandir("../app/views" . $subDirectory);
+                foreach($directoryContents as $item){
+                    $this->loopReadfileUntilFound($item);
+                }
+            }
+        }
+        catch(\Exception $exc){
+
+        }
     }
 }
 ?>
