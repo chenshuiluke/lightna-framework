@@ -4,7 +4,6 @@
  */
 namespace Lightna;
 
-
 session_start();
 //phpinfo();
 //echo "HI";
@@ -19,6 +18,8 @@ try{
     Config::onLoad();
     Request::onLoad();
     Database\ORM::onLoad();
+    BuiltinModels\LightnaLogger::onLoad();
+    Database\ModelLoader::loadModels();
     if(Config::getIsInDebugMode()){
        // Request::printContents();
     }

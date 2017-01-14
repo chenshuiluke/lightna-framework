@@ -20,10 +20,16 @@ class Model{
      */
     protected $fields = [];
     /**
+     * Determines if this class will call any lightnaLog().
+     * @var boolean
+     */
+    protected $doLogging = true;
+    /**
      * Creates/updates and returns a Field of type string
      * @param  string $name The name of the field (name of the column).
      * @return Field       The newly created or updated field.
      */
+     
     protected function &string($name){
         $field = new Field($name, "string");
         return $this->createOrUpdateField($name, $field);
@@ -78,7 +84,7 @@ class Model{
    * fields to initialize and the values to initialize them with.
    */
     protected function create($keyValArray){
-        $this->createTable();
+        //$this->createTable();
         foreach($keyValArray as $fieldName => $fieldValue){
             $this->setExistingFieldValue($fieldName, $fieldValue);
         }
@@ -133,7 +139,11 @@ class Model{
    * and each field must have at least a name and a type before this function is to be called.
    *
    */
-    protected function createTable(){
+    public function createTable(){
+        if($this->doLogging){
+            lightnaLog("Creating $this->table");
+        }
+        
         $queryString = "CREATE TABLE IF NOT EXISTS $this->table (";
         $size = count($this->fields);
         $fields = array_values($this->fields);
