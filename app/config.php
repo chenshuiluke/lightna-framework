@@ -16,7 +16,7 @@ class Config{
                 echo nl2br("No environment variable was found for the Lightna database user.\n");
             }            
         }
-        else{
+        else if(getenv('lightna_database_user') === true){
             self::$database_user = getenv('lightna_database_user');
         }
 
@@ -25,7 +25,7 @@ class Config{
                 echo nl2br("No environment variable was found for the Lightna database password.\n");
             }            
         }
-        else{
+        else if(getenv('lightna_database_password') === true){
             self::$database_password = getenv('lightna_database_password');
         }
 
@@ -34,7 +34,7 @@ class Config{
                 echo nl2br("No environment variable was found for the Lightna database host.\n");
             }            
         }
-        else{
+        else if(getenv('lightna_database_host') === true){
             self::$database_host = getenv('lightna_database_host');
         }
 
@@ -43,7 +43,7 @@ class Config{
                 echo nl2br("No environment variable was found for the Lightna database name.\n");
             }            
         }
-        else{
+        else if(getenv('lightna_database_name') === true){
             self::$database_name = getenv('lightna_database_name');
         }
 
