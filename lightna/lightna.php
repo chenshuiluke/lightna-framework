@@ -4,6 +4,7 @@
  */
 namespace Lightna;
 
+header("Access-Control-Allow-Origin: *");
 session_start();
 //phpinfo();
 //echo "HI";
